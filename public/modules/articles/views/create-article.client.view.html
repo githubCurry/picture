@@ -1,0 +1,28 @@
+<section data-ng-controller="ArticlesController">
+    <div class="page-header text-center">
+        <h1>New Article</h1>
+    </div>
+    <div class="col-md-12 text-center">
+        <button class="btn btn-info btn-lg inner">选择图片</button>
+        <form method="post" enctype="multipart/form-data" action="/upload">
+            <p class="button">
+                <input class="input" choose=c hoose type="file" name="image" multiple="multiple" />
+            </p>
+            <p>
+                <input type="submit" value="Upload" />
+            </p>
+        </form>
+        <div>
+            <img class="img_content img-rounded " ng-src={{content.pic1}}>
+            <img class="img_content img-rounded" ng-src={{content.pic2}}>
+            <img class="img_content img-rounded" ng-src={{content.pic3}}>
+            <img class="img_content img-rounded" ng-src={{content.pic4}}>
+            <img class="img_content img-rounded" ng-src={{content.pic5}}>
+            <img class="img_content img-rounded" ng-src={{content.pic6}}>
+            <img class="img_content img-rounded" ng-src={{content.pic7}}>
+            <img class="img_content img-rounded" ng-src={{content.pic8}}>
+            <img class="img_content img-rounded" ng-src={{content.pic9}}>
+            <img class="img_content img-rounded" ng-src={{content.pic10}}>
+        </div>
+    </div>
+</section>

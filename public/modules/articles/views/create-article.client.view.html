@@ -4,25 +4,28 @@
     </div>
     <div class="col-md-12 text-center">
         <button class="btn btn-info btn-lg inner">选择图片</button>
-        <form method="post" enctype="multipart/form-data" action="/upload">
+        <form  ng-submit="submitInfo()" ng-if="content.pic">
+            <div class="form-group text-center">
+                <div class="col-xs-6 col-xs-offset-3">
+                    <textarea class="form-control textare" rows="1" id="inputEmail3" placeholder="文字描述" ng-model="text"></textarea>
+                </div>
+            </div>
+            <div class="form-group col-xs-12 margin">
+                <div class="col-xs-2 col-xs-offset-5">
+                    <input type="submit"   class="btn btn-success form-control" id="inputEmail3">
+                </div>
+            </div>
+        </form>
+        <div class="img_block col-xs-12 ">
+            <img  class="img_content img-rounded " ng-src={{content.pic}}>
+        </div>
+        <form method="post" id="form1"  enctype="multipart/form-data" action="/upload">
             <p class="button">
-                <input class="input" choose=c hoose type="file" name="image" multiple="multiple" />
+                <input class="input" choose=choose type="file" name="image"/>
             </p>
-            <p>
-                <input type="submit" value="Upload" />
+            <p class="none">
+                <input type="submit" id="fuck"  value="Upload" />
             </p>
         </form>
-        <div>
-            <img class="img_content img-rounded " ng-src={{content.pic1}}>
-            <img class="img_content img-rounded" ng-src={{content.pic2}}>
-            <img class="img_content img-rounded" ng-src={{content.pic3}}>
-            <img class="img_content img-rounded" ng-src={{content.pic4}}>
-            <img class="img_content img-rounded" ng-src={{content.pic5}}>
-            <img class="img_content img-rounded" ng-src={{content.pic6}}>
-            <img class="img_content img-rounded" ng-src={{content.pic7}}>
-            <img class="img_content img-rounded" ng-src={{content.pic8}}>
-            <img class="img_content img-rounded" ng-src={{content.pic9}}>
-            <img class="img_content img-rounded" ng-src={{content.pic10}}>
-        </div>
     </div>
 </section>

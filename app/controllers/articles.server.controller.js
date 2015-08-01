@@ -10,10 +10,12 @@ var mongoose = require('mongoose'),
 var multiparty = require('multiparty');
 var format = require('util').format;
 var util = require('util');
-   var fs = require('fs');
+var fs = require('fs');
 /**
  * Create a article
  */
+
+
 exports.create = function(req, res) {
     var article = new Article(req.body);
     article.user = req.user;
@@ -58,6 +60,7 @@ exports.update = function(req, res) {
 /**
  * Delete an article
  */
+
 exports.delete = function(req, res) {
     var article = req.article;
 
@@ -76,14 +79,12 @@ exports.delete = function(req, res) {
  * List of Articles
  */
 exports.list = function(req, res) {
-    console.error("===========enter get all articles");
     Article.find().sort('-created').populate('user', 'displayName').exec(function(err, articles) {
         if (err) {
             return res.status(400).send({
                 message: errorHandler.getErrorMessage(err)
             });
         } else {
-            console.error(articles);
             res.json(articles);
         }
     });
@@ -125,30 +126,51 @@ exports.hasAuthorization = function(req, res, next) {
 };
 
 
-exports.upload = function(req, res, next) {
+exports.upload = function(req, res, next) { 
+        console.error(req.session.text);
         var form = new multiparty.Form({
             uploadDir: './public/images'
         });
-        //下载后处理
         form.parse(req, function(err, fields, files) {
-                    var filesTmp = JSON.stringify(files, null, 2);
+                var filesTmp = JSON.stringify(files, null, 2);
+                if (err) {
+                    console.log('parse error: ' + err);
+                } else {
+
+                    var inputFile = files.image[0];
+                    var uploadedPath = inputFile.path;
+                    console.error(inputFile);
+                    var dstPath = './public/images/' + inputFile.originalFilename;
+                    fs.rename(uploadedPath, dstPath, function(err) {
+                        if (err) {
+                            console.log('rename error: ' + err);
+                        } else {
+                            console.log('rename ok');
+                        }
+                    });
+
+                }
+                var article = new Article({
+                    title: req.session.text,
+                    picture: inputFile.originalFilename
+                });
+                article.user = req.user;
+
+                article.save(function(err) {
                     if (err) {
-                        console.log('parse error: ' + err);
+                        return res.status(400).send({
+                            message: errorHandler.getErrorMessage(err)
+                        });
                     } else {
-                        console.log('parse files: ' + filesTmp);
-                        var inputFile = files.image[0];
-                        var uploadedPath = inputFile.path;
-                        var dstPath = './public/images' + inputFile.originalFilename;
+                        res.redirect('/');
                     }
 
-                    res.writeHead(200, {
-                        'content-type': 'text/plain;charset=utf-8'
-                    });
-                    res.write('received upload:\n\n');
-                    res.end(util.inspect({
-                        fields: fields,
-                        files: filesTmp
-                    }));
 
                 })
-}
+            })
+        }
+        exports.text = function(req, res) {
+            req.session.text = req.body.text;
+            res.end(req.body.text)
+
+        };

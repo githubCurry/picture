@@ -6,28 +6,55 @@
 
 html,
 body {
-
     font-family: "微软雅黑", "黑体", "宋体";
 }
-.img_content{
-    float: left;
-    height: 200px;
-    padding: 20px;
-}
-.button{
-    margin-left:50%;
-    width: 70px;
+
+.img_content {
     display: block;
-    overflow:hidden ;
-    margin-top: -30px;
+    text-align: center;
+    margin: 0 auto;
+    height: 300px;
+
+}
+.img_block{
+    height: 340px;
+    padding: 20px 0;
+    /*margin:0 20%;*/
+    /*border: solid 1px #aaa;*/
+}
+.text_input{
+    font-size: 20px;
+    margin-top: 20px;
+    color: rgb(251,100,54);
+}
+
+.textare {
+
+    resize: none;
+    margin-top: 20px;
+}
+.margin{
+margin-top: 20px;
+}
+.none{
+    display: none;
+}
+
+
+.button {
+    margin-left: 50%;
+    width: 106px;
+    display: block;
+    overflow: hidden;
+    margin-top: -46px;
     -webkit-transform: translateX(-53px);
     opacity: 0;
 }
-.inner{
+.inner {
     position: relative;
     top: 15px;
 }
-.input{
+.input {
     height: 46px;
     width: 106px;
 }
@@ -35,24 +62,22 @@ body {
     display: inline-block;
     position: relative;
 }
-
 .btn-remove-account {
     top: 10px;
     right: 10px;
     position: absolute;
 }
-
 .header {
     border-radius: 100%;
     position: absolute;
     top: 10px;
-	left: 50%;
-	-webkit-transform: translateX(-45px);
+    left: 50%;
+    -webkit-transform: translateX(-45px);
 }
-.loading{
-	height: 100%;
-	position: relative;
-	margin-top: 20%;
+.loading {
+    height: 100%;
+    position: relative;
+    margin-top: 20%;
 }
 .out {
     position: relative;
@@ -64,31 +89,28 @@ body {
     -webkit-animation: mymove 2s linear infinite;
     background: -moz-linear-gradient(yellow, orange, red, green, blue, purple);
     /*火狐*/
+    
     background: -webkit-linear-gradient(yellow, orange, red, green, blue, purple);
     /*谷歌*/
 }
-
 @keyframes mymove {
     from {
-        -webkit-transform:rotate(0);
+        -webkit-transform: rotate(0);
     }
+    
     to {
-       -webkit-transform:rotate(360deg);
+        -webkit-transform: rotate(360deg);
     }
 }
-
 .red {
     color: red;
 }
-
 .margin {
     margin-bottom: 20px;
 }
-
 .gitcolor {
     color: #999;
 }
-
 .error {
     display: inline-block;
     float: right;
@@ -96,15 +118,12 @@ body {
     top: 31px;
     right: 5px;
 }
-
 .main {
     position: relative;
 }
-
 .bordercolor {
     border: solid 1px red !important;
 }
-
 .green {
     border: solid 1px #aaa;
 }

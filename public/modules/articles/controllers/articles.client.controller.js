@@ -1,49 +1,39 @@
 'use strict';
 
 // Articles controller
-angular.module('articles').controller('ArticlesController', ['$scope', '$stateParams', '$location', 'Authentication', 'Articles',
-    function($scope, $stateParams, $location, Authentication, Articles) {
+angular.module('articles').controller('ArticlesController', ['$http','$scope', '$stateParams', '$location', 'Authentication', 'Articles',
+    function($http,$scope, $stateParams, $location, Authentication, Articles) {
         $scope.authentication = Authentication;
         $scope.index = 1;
         $scope.content = {
-        	pic1:"",
-	    	pic2:"",
-        	pic3:"",
-        	pic4:"",
-        	pic5:"",
-        	pic6:"",
-        	pic7:"",
-        	pic8:"",
-        	pic9:"",
-        	pic10:""
-
+        	pic:""
         }
+        $scope.form1="";
+        $scope.text = "";
+        $scope.sub = false;
+
+        $scope.submitInfo = function(){
+            var info =  this.text;
+            $http.post("text",{
+                    text:info
+            }).success(function(data){
+                $("#form1").submit();
+            })
+        }
+
         $scope.uploadFile = function(event, obj) {
             var files = event.target.files;
-            if ($scope.index == 10) {
-            	alert("图片太多了");
-            	return;
-            }
-            for (var i = 1; i < 11; i++) {
-            	var entity = "pic" +　i; 
-            	if ($scope.content[entity] == "") {
-            		$scope.index = i;
-            		break;
-            	}
-            }
 
             if (obj.files && obj.files[0]) {
                 var reader = new FileReader();
                 reader.readAsDataURL(obj.files[0]);
                 reader.onload = function(e) {
-                	var entity = "pic" +　$scope.index;
+                	var entity = "pic";
                     $scope.content[entity] = this.result;
                     $scope.$apply()
                 }
             }
         };
-
-
 
         $scope.create = function() {
             var article = new Articles({

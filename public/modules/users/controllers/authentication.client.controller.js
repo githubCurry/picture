@@ -35,8 +35,7 @@ angular.module('users').controller('AuthenticationController', ['$scope', '$http
 
 		$scope.signin = function() {
 			$http.post('/auth/signin', $scope.credentials).success(function(response) {
-				Authentication.setUser(response);
-				console.error(response);
+				Authentication.user(response);
 				$location.path('/personal/'+response._id);
 			}).error(function(response) {
 				$scope.error = response.message;

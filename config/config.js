@@ -77,7 +77,6 @@ module.exports.getJavaScriptAssets = function(includeTests) {
 	if (includeTests) {
 		output = _.union(output, this.getGlobbedFiles(this.assets.tests));
 	}
-	console.warn(output);
 	return output;
 };
 

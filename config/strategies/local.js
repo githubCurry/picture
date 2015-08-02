@@ -14,8 +14,7 @@ module.exports = function() {
 			passwordField: 'password'
 		},
 		function(username, password, done) {
-			console.warn(username);
-			console.warn(password);
+
 			User.findOne({
 				username: username
 			}, function(err, user) {

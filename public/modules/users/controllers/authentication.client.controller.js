@@ -35,8 +35,11 @@ angular.module('users').controller('AuthenticationController', ['$scope', '$http
 
 		$scope.signin = function() {
 			$http.post('/auth/signin', $scope.credentials).success(function(response) {
-				Authentication.user(response);
-				$location.path('/personal/'+response._id);
+				// Authentication.user(response);
+				($scope.authentication.user=="")&&($scope.authentication.user = response._id);
+				($scope.authentication.name=="")&&($scope.authentication.name = response.username);
+				 $location.path('/');				
+				// $location.path('/personal/'+response._id);
 			}).error(function(response) {
 				$scope.error = response.message;
 			});

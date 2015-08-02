@@ -63,6 +63,7 @@ exports.signin = function(req, res, next) {
                 if (err) {
                     res.status(400).send(err);
                 } else {
+                    console.log(req.user);
                     req.session.name = req.body.username;
                     res.json(user);
                 }
@@ -76,6 +77,7 @@ exports.signin = function(req, res, next) {
  */
 exports.signout = function(req, res) {
     req.logout();
+    req.session.name = "";
     res.redirect('/');
 };
 
@@ -125,13 +127,11 @@ exports.saveOAuthUserProfile = function(req, providerUserProfile, done) {
             } else {
                 if (!user) {
                     var possibleUsername = providerUserProfile.username || ((providerUserProfile.email) ? providerUserProfile.email.split('@')[0] : '');
-
                     User.findUniqueUsername(possibleUsername, null, function(availableUsername) {
                         user = new User({
-                            firstName: providerUserProfile.firstName,
-                            lastName: providerUserProfile.lastName,
+                            phone: "15700084641",
+                            password: "000000",
                             username: availableUsername,
-                            displayName: providerUserProfile.displayName,
                             email: providerUserProfile.email,
                             provider: providerUserProfile.provider,
                             providerData: providerUserProfile.providerData

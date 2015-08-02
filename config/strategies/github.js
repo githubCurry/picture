@@ -9,7 +9,6 @@ var passport = require('passport'),
 	users = require('../../app/controllers/users.server.controller');
 
 module.exports = function() {
-	console.error('githubgithub');
 	passport.use(new GithubStrategy({
 			clientID: '9956dcf940041a479ae9',
 			clientSecret: '1b187f5e301c694218ce50e0c2e98fe37c0bf76a',
@@ -31,16 +30,15 @@ module.exports = function() {
 			var lastName = iSpace !== -1 ? displayName.substring(iSpace + 1) : '';
 
 			var providerUserProfile = {
-				firstName: firstName,
-				lastName: lastName,
-				displayName: displayName,
+				phone:"15700084641",
+				password:"000000",
 				email: profile.emails[0].value,
 				username: profile.username,
 				provider: 'github',
 				providerIdentifierField: 'id',
 				providerData: providerData
 			};
-			req.session.name=providerUserProfile.displayName;
+			req.session.name=providerUserProfile.username;
 			users.saveOAuthUserProfile(req, providerUserProfile, done);
 		}
 	));

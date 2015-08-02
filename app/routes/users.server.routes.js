@@ -26,12 +26,12 @@ module.exports = function(app) {
 	app.route('/auth/signout').get(users.signout);
 
 	// Setting the facebook oauth routes
-	app.route('/auth/weibo').get(passport.authenticate('weibo'));
-	app.route('/auth/weibo/callback').get(users.oauthCallback('weibo'));
+	// app.route('/auth/weibo').get(passport.authenticate('weibo'));
+	// app.route('/auth/weibo/callback').get(users.oauthCallback('weibo'));
 
-	// Setting the twitter oauth routes
-	app.route('/auth/wechat').get(passport.authenticate('wechat'));
-	app.route('/auth/wechat/callback').get(users.oauthCallback('wechat'));
+	// // Setting the twitter oauth routes
+	// app.route('/auth/wechat').get(passport.authenticate('wechat'));
+	// app.route('/auth/wechat/callback').get(users.oauthCallback('wechat'));
 
 	// Setting the github oauth routes
 	app.route('/auth/github').get(passport.authenticate('github'));
